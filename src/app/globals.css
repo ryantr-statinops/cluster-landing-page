@@ -1,26 +1,248 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ─── Tailwind v4: Custom Theme (thay thế tailwind.config.ts) ───────────── */
+@theme {
+  /* Fonts — map tới CSS variables được inject bởi next/font trong layout.tsx */
+  --font-display: var(--font-syne), sans-serif;
+  --font-mono:    var(--font-space-mono), monospace;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Custom colors */
+  --color-bg:      #080808;
+  --color-surface: #0f0f0f;
+  --color-border:  #1a1a1a;
+  --color-muted:   #2a2a2a;
+  --color-dim:     #555555;
+  --color-subtle:  #888888;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Custom animations */
+  --animate-pulse-slow:  pulse 4s ease-in-out infinite;
+  --animate-spin-slow:   spin 20s linear infinite;
+  --animate-grid-scroll: gridScroll 30s linear infinite;
+  --animate-blink:       blink 1s step-end infinite;
+
+  /* Custom keyframes */
+  @keyframes gridScroll {
+    0%   { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
   }
 }
 
+/* ─── CSS Variables ──────────────────────────────────────────────────────── */
+:root {
+  --grad:      linear-gradient(135deg, #06b6d4 0%, #67e8f9 40%, #ffffff 100%);
+  --grad-text: linear-gradient(135deg, #22d3ee 0%, #a5f3fc 50%, #ffffff 100%);
+  --glow:      0 0 40px rgba(6, 182, 212, 0.15);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #080808;
+  color: #e5e5e5;
+  font-family: var(--font-syne), sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne), sans-serif;
+}
+
+/* Fallback utility class nếu Tailwind v4 chưa resolve @theme font */
+.font-display {
+  font-family: var(--font-syne), sans-serif !important;
+}
+.font-mono {
+  font-family: var(--font-space-mono), monospace !important;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #080808; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+
+/* ─── Focus ──────────────────────────────────────────────────────────────── */
+a:focus-visible { outline: 2px solid #06b6d4; outline-offset: 4px; }
+
+/* ─── Components ─────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* Gradient text */
+  .grad-text {
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient border card */
+  .grad-border {
+    position: relative;
+    background: #0f0f0f;
+  }
+  .grad-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(6,182,212,0.4) 0%, rgba(255,255,255,0.05) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background: var(--grad);
+    color: #000;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 32px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0);
+    transition: background 0.3s;
+  }
+  .btn-primary:hover::after { background: rgba(255, 255, 255, 0.15); }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4);
+  }
+
+  .btn-ghost {
+    border: 1px solid rgba(6, 182, 212, 0.3);
+    color: #a5f3fc;
+    font-family: var(--font-space-mono), monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 13px 28px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+  .btn-ghost:hover {
+    border-color: rgba(6, 182, 212, 0.8);
+    background: rgba(6, 182, 212, 0.05);
+    color: #fff;
+  }
+
+  /* Backgrounds */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(6, 182, 212, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6, 182, 212, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: gridScroll 30s linear infinite;
+  }
+
+  .dot-pattern {
+    background-image: radial-gradient(circle, rgba(6, 182, 212, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Glow orb */
+  .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Divider */
+  .hr-grad {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.3), transparent);
+  }
+
+  /* Mono label */
+  .label {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #06b6d4;
+  }
+
+  /* Tag pill */
+  .tag {
+    font-family: var(--font-space-mono), monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 2px;
+    background: rgba(6, 182, 212, 0.08);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+    color: #67e8f9;
+  }
+
+  /* Architecture layer hover */
+  .arch-layer {
+    transition: all 0.3s ease;
+  }
+  .arch-layer:hover {
+    transform: translateX(6px);
+  }
+
+  /* Roadmap item hover */
+  .roadmap-item {
+    transition: all 0.3s ease;
+  }
+  .roadmap-item:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Navbar blur */
+  .nav-blur {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(8, 8, 8, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  /* Cursor blink */
+  .cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: #06b6d4;
+  }
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .orb { filter: blur(50px); }
 }
