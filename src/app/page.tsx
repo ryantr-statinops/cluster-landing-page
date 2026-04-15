@@ -145,8 +145,16 @@ function HeroSection() {
 
         {/* CTAs */}
         <div className="flex flex-wrap items-center gap-4">
-          <a href="#focus" className="btn-primary">
-            Xem tài liệu →
+          <a
+            href="https://cluster-ai-five.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary"
+          >
+            trải nghiệm bản mô phỏng
+          </a>
+          <a href="#focus" className="btn-ghost">
+            Xem tài liệu
           </a>
           <a href="#architecture" className="btn-ghost">
             Khám phá kiến trúc
