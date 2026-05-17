@@ -61,8 +61,8 @@ function Navbar() {
 
         {/* Nav links (desktop) */}
         <div className="hidden md:flex items-center gap-8">
-          {['Tính năng', 'Kiến trúc', 'Roadmap', 'Stack'].map((item, i) => {
-            const hrefs = ['#focus', '#architecture', '#roadmap', '#stack'];
+          {['Tính năng', 'Roadmap'].map((item, i) => {
+            const hrefs = ['#focus', '#roadmap'];
             return (
               <a
                 key={item}
@@ -121,26 +121,25 @@ function HeroSection() {
             style={{ fontFamily: 'var(--font-syne), sans-serif' }}
            className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight mb-2 text-white"
            >
-            Quản lý &amp; điều hành
+            Quản lý &amp; xử lý
           </h1>
           <h1
             style={{ fontFamily: 'var(--font-syne), sans-serif' }}
             className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight mb-2 text-white"
           >
-            <span className="grad-text">doanh nghiệp hiệu quả</span>
+            <span className="grad-text">và trực quan hóa</span>
           </h1>
           <h1
             style={{ fontFamily: 'var(--font-syne), sans-serif' }}
             className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight tracking-tight text-white/60"
           >
-            bằng AI Agent &amp; ERP.
+            dữ liệu hiệu quả.
           </h1>
         </div>
 
         {/* Sub */}
         <p className="text-subtle font-mono text-sm leading-relaxed max-w-xl mb-12">
-          Cluster là dự án tích hợp AI Orchestrator vào hệ thống ERP — nhằm cải thiện khả năng quản lí và tự động hóa quy trình vận
-          hành, kết nối nhiều dữ liệu khác nhau theo thời gian thực và ra quyết định thông minh hơn dành cho doanh nghiệp.
+          Cluster là dự án được phát triển nhằm tối ưu hóa khả năng quản lý, đồng bộ và xử lý dữ liệu tự động theo thời gian thực.
         </p>
 
         {/* CTAs */}
@@ -155,9 +154,6 @@ function HeroSection() {
           </a>
           <a href="#focus" className="btn-ghost">
             Xem tài liệu
-          </a>
-          <a href="#architecture" className="btn-ghost">
-            Khám phá kiến trúc
           </a>
         </div>
 
@@ -238,12 +234,11 @@ function CoreFocusSection() {
         <div className="reveal mb-16">
           <div className="label mb-4">// 01 — Core Focus</div>
           <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-4">
-            Tích hợp AI vào quy trình <br className="hidden md:block" />
-            <span className="grad-text">vận hành thực tế</span>
+            Xây dựng data pipeline hiệu quả <br className="hidden md:block" />
+            <span className="grad-text">nhằm tối ưu hóa quy trình xử lý dữ liệu.</span>
           </h2>
           <p className="text-subtle text-sm max-w-lg leading-relaxed">
-            Không cần thay thế toàn bộ công cụ quen thuộc. Cluster hoạt động trên nền tảng bạn
-            đang dùng, thêm lớp trí tuệ nhân tạo để tự động hóa và tối ưu hóa.
+            Không cần thay thế toàn bộ công cụ hiện có - Cluster hoạt động như một nền tảng trung gian giúp tổng hợp, đồng bộ hóa và xử lý dữ liệu từ nhiều nguồn một cách hiệu quả.
           </p>
         </div>
 
@@ -315,172 +310,7 @@ function CoreFocusSection() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Architecture Section
-// ─────────────────────────────────────────────────────────────────────────────
-const archLayers = [
-  {
-    num: 'Layer 01',
-    color: 'text-cyan-400',
-    name: 'CORE',
-    desc: 'Nền tảng hạ tầng: Database, Message Queue, AI Model Runtime, Authentication. Chạy độc lập, không phụ thuộc UI.',
-    tags: ['PostgreSQL', 'Redis', 'Model Runner', 'Auth Service'],
-    style: { border: '1px solid rgba(6,182,212,0.3)', background: 'rgba(6,182,212,0.04)' },
-    indent: '',
-    delay: '0.1s',
-  },
-  {
-    num: 'Layer 02',
-    color: 'text-cyan-300',
-    name: 'LOGIC',
-    desc: 'AI Orchestrator, Workflow Engine, Business Rules. Nơi các Agent được điều phối và quy trình được thực thi theo logic nghiệp vụ.',
-    tags: ['Agent Manager', 'Rule Engine', 'API Gateway'],
-    style: { border: '1px solid rgba(103,232,249,0.2)', background: 'rgba(103,232,249,0.03)' },
-    indent: 'ml-4',
-    delay: '0.2s',
-  },
-  {
-    num: 'Layer 03',
-    color: 'text-white/50',
-    name: 'INTERFACE',
-    desc: 'Web Dashboard, Mobile App, External Integrations (Google Sheets, Slack, Email). Lớp người dùng tương tác trực tiếp.',
-    tags: ['Web App', 'REST API', 'Webhooks'],
-    style: { border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)' },
-    indent: 'ml-8',
-    delay: '0.3s',
-  },
-];
 
-function ArchitectureSection() {
-  return (
-    <section id="architecture" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="dot-pattern absolute inset-0 opacity-30" />
-      <div className="orb w-80 h-80 bottom-0 left-10 opacity-40" style={{ background: 'rgba(6,182,212,0.07)' }} />
-
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="reveal mb-16">
-          <div className="label mb-4">// 02 — Architecture</div>
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-4">
-            Mô hình kiến trúc <span className="grad-text">3 lớp</span>
-          </h2>
-          <p className="text-subtle text-sm max-w-lg leading-relaxed">
-            Thiết kế tách biệt rõ ràng giữa Core Engine, Business Logic và Interface Layer — đảm
-            bảo khả năng mở rộng và bảo trì dài hạn.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Layers */}
-          <div className="space-y-4">
-            {archLayers.map((layer) => (
-              <div
-                key={layer.name}
-                className={`reveal arch-layer rounded p-6 cursor-default ${layer.indent}`}
-                style={{ ...layer.style, transitionDelay: layer.delay }}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0">
-                    <div className={`label ${layer.color} mb-1`}>{layer.num}</div>
-                    <div
-                      className="w-8 h-0.5"
-                      style={{
-                        background:
-                          layer.num === 'Layer 01'
-                            ? 'linear-gradient(135deg,#06b6d4,#fff)'
-                            : layer.num === 'Layer 02'
-                            ? '#67e8f9'
-                            : 'rgba(255,255,255,0.2)',
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-display font-bold text-white text-xl mb-2">{layer.name}</h3>
-                    <p className="text-subtle text-sm leading-relaxed mb-4">{layer.desc}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {layer.tags.map((t) => <span key={t} className="tag">{t}</span>)}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* ASCII Diagram */}
-          <div className="reveal" style={{ transitionDelay: '0.2s' }}>
-            <div className="grad-border rounded p-8 font-mono text-xs">
-              <div className="label mb-6">// cluster.architecture.v1</div>
-              <div className="space-y-3">
-                  {/* INTERFACE LAYER */}
-                  <div
-                    className="rounded p-4"
-                    style={{
-                      border: '1px solid rgba(6,182,212,0.4)',
-                      background: 'rgba(6,182,212,0.06)',
-                    }}
-                  >
-                    <div className="text-xs font-bold text-white mb-1" style={{ fontFamily: 'var(--font-syne)' }}>
-                      INTERFACE LAYER
-                    </div>
-                    <div className="text-xs text-dim font-mono">Web · Mobile · API</div>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="flex justify-center">
-                    <div className="flex flex-col items-center gap-0.5">
-                      <div className="w-px h-4 bg-cyan-500/40" />
-                      <div className="text-cyan-500 text-xs">▼</div>
-                    </div>
-                  </div>
-
-                  {/* LOGIC LAYER */}
-                  <div
-                    className="rounded p-4"
-                    style={{
-                      border: '1px solid rgba(6,182,212,0.3)',
-                      background: 'rgba(6,182,212,0.04)',
-                    }}
-                  >
-                    <div className="text-xs font-bold text-white mb-1" style={{ fontFamily: 'var(--font-syne)' }}>
-                      LOGIC LAYER
-                    </div>
-                    <div className="text-xs text-dim font-mono">Orchestrator · Rules</div>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="flex justify-center">
-                    <div className="flex flex-col items-center gap-0.5">
-                      <div className="w-px h-4 bg-cyan-500/40" />
-                      <div className="text-cyan-500 text-xs">▼</div>
-                    </div>
-                  </div>
-
-                  {/* CORE LAYER */}
-                  <div
-                    className="rounded p-4"
-                    style={{
-                      border: '1px solid rgba(6,182,212,0.2)',
-                      background: 'rgba(6,182,212,0.02)',
-                    }}
-                  >
-                    <div className="text-xs font-bold text-white mb-1" style={{ fontFamily: 'var(--font-syne)' }}>
-                      CORE LAYER
-                    </div>
-                    <div className="text-xs text-dim font-mono">DB · Queue · AI Runtime</div>
-                  </div>
-                </div>
-
-              <div className="mt-6 pt-6 border-t border-border text-dim">
-                <div><span className="text-cyan-500">→</span> Separation of concerns</div>
-                <div><span className="text-cyan-500">→</span> Horizontal scalability</div>
-                <div><span className="text-cyan-500">→</span> Plugin-based extensions</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Roadmap Section
@@ -551,7 +381,7 @@ function RoadmapSection() {
 
       <div className="max-w-6xl mx-auto px-6">
         <div className="reveal mb-16">
-          <div className="label mb-4">// 03 — Roadmap</div>
+          <div className="label mb-4">// 02 — Roadmap</div>
           <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-4">
             Lộ trình <span className="grad-text">phát triển</span>
           </h2>
@@ -624,58 +454,7 @@ function RoadmapSection() {
   );
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Tech Stack Section
-// ─────────────────────────────────────────────────────────────────────────────
-const stackItems = [
-  { emoji: '🐍', name: 'Python',     sub: 'Backend / Pytorch',   delay: '0.05s' },
-  { emoji: '🐳', name: 'Docker',     sub: 'Container',      delay: '0.10s' },
-  { emoji: '🤖', name: 'AI Models',  sub: 'LLM / Clawbot',   delay: '0.15s' },
-  { emoji: '🗄️', name: 'PostgreSQL', sub: 'Database',       delay: '0.20s' },
-  { emoji: '⚡', name: 'Redis',      sub: 'Cache / Queue',  delay: '0.25s' },
-  { emoji: '▲',  name: 'Next.js',    sub: 'Frontend',       delay: '0.30s' },
-];
 
-function TechStackSection() {
-  return (
-    <section id="stack" className="relative py-24 md:py-32 overflow-hidden">
-      <div className="dot-pattern absolute inset-0 opacity-20" />
-      <div className="orb w-64 h-64 top-10 left-1/4 opacity-40" style={{ background: 'rgba(6,182,212,0.06)' }} />
-
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="reveal mb-16 text-center">
-          <div className="label mb-4 flex justify-center">// 04 — Tech Stack</div>
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-4">
-            Những <span className="grad-text"> công nghệ nền tảng</span>  của dự án
-          </h2>
-          <p className="text-subtle text-sm max-w-md mx-auto">
-            Dự án luôn chọn lọc kỹ càng những công nghệ mới, có hiệu suất, độ tin cậy và khả năng mở rộng cao.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {stackItems.map((item) => (
-            <div
-              key={item.name}
-              className="reveal grad-border rounded p-5 text-center cursor-default"
-              style={{ transitionDelay: item.delay }}
-            >
-              <div className="text-3xl mb-3">{item.emoji}</div>
-              <div className="font-display font-bold text-white text-sm mb-1">{item.name}</div>
-              <div className="label text-dim">{item.sub}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="reveal mt-8 text-center" style={{ transitionDelay: '0.2s' }}>
-          <p className="text-dim text-xs font-mono">
-            * Stack đang trong giai đoạn R&D — có thể thay đổi theo kết quả benchmark
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Contact Section
@@ -688,7 +467,7 @@ function ContactSection() {
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="max-w-2xl mx-auto text-center reveal">
-          <div className="label mb-6 flex justify-center">// 05 — Contact</div>
+          <div className="label mb-6 flex justify-center">// 03 — Contact</div>
           <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-6">
             Bắt đầu theo dõi và hợp tác
             <br />
@@ -728,9 +507,7 @@ function Footer() {
           <div className="flex items-center gap-6">
             {[
               { label: 'Tính năng',     href: '#focus' },
-              { label: 'Kiến trúc', href: '#architecture' },
               { label: 'Roadmap',      href: '#roadmap' },
-              { label: 'Tech Stack',  href: '#stack' },
             ].map((link) => (
               <a key={link.label} href={link.href} className="label text-dim hover:text-cyan-400 transition-colors">
                 {link.label}
@@ -768,11 +545,7 @@ export default function HomePage() {
         <Divider />
         <CoreFocusSection />
         <Divider />
-        <ArchitectureSection />
-        <Divider />
         <RoadmapSection />
-        <Divider />
-        <TechStackSection />
         <Divider />
         <ContactSection />
       </main>
