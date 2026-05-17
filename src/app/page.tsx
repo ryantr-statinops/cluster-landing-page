@@ -5,6 +5,7 @@
 import Image from 'next/image';
 import ScrollReveal from '@/components/ScrollReveal';
 import ContactForm from '@/components/ContactForm'; 
+import VisualWorkflow from '@/components/VisualWorkflow';
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Logo Icon (dùng lại nhiều nơi)
@@ -61,8 +62,8 @@ function Navbar() {
 
         {/* Nav links (desktop) */}
         <div className="hidden md:flex items-center gap-8">
-          {['Tính năng', 'Roadmap'].map((item, i) => {
-            const hrefs = ['#focus', '#roadmap'];
+          {['Tính năng', 'Quy trình', 'Visual Flow', 'Roadmap'].map((item, i) => {
+            const hrefs = ['#focus', '#workflow', '#visual-workflow', '#roadmap'];
             return (
               <a
                 key={item}
@@ -313,6 +314,266 @@ function CoreFocusSection() {
 
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Workflow Section
+// ─────────────────────────────────────────────────────────────────────────────
+const workflowSteps = [
+  {
+    num: '01',
+    title: 'Data Source',
+    sub: 'Spreadsheet trong Google Sheets',
+    delay: '0.1s',
+    illustration: (
+      <div className="w-full bg-[#0a0a0a] rounded border border-border overflow-hidden font-mono text-[10px] text-subtle mt-4">
+        {/* Window Bar */}
+        <div className="bg-[#111] px-3 py-2 flex items-center justify-between border-b border-border">
+          <span className="text-white/60 flex items-center gap-1.5 text-[9px]">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 flex items-center justify-center text-[7px] text-black font-bold font-sans">S</span> google_sheets_sync.xlsx
+          </span>
+          <div className="flex gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-red-500/40" />
+            <span className="w-1.5 h-1.5 rounded-full bg-yellow-500/40" />
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500/40" />
+          </div>
+        </div>
+        {/* Spreadsheet Grid */}
+        <div className="grid grid-cols-4 bg-border/20 gap-[1px]">
+          <div className="bg-[#111] p-1.5 text-center font-bold text-white/40">A</div>
+          <div className="bg-[#111] p-1.5 text-center font-bold text-white/40">B</div>
+          <div className="bg-[#111] p-1.5 text-center font-bold text-white/40">C</div>
+          <div className="bg-[#111] p-1.5 text-center font-bold text-white/40">D</div>
+          
+          <div className="bg-[#0e0e0e] p-1.5 text-white/80">id_user</div>
+          <div className="bg-[#0e0e0e] p-1.5 text-white/80">name</div>
+          <div className="bg-[#0e0e0e] p-1.5 text-white/80">revenue</div>
+          <div className="bg-[#0e0e0e] p-1.5 text-cyan-400">status</div>
+          
+          <div className="bg-[#0e0e0e] p-1.5 text-dim">#9081</div>
+          <div className="bg-[#0e0e0e] p-1.5 text-white/60 truncate">Alex M.</div>
+          <div className="bg-[#0e0e0e] p-1.5 text-emerald-400">$1,450</div>
+          <div className="bg-[#0e0e0e] p-1.5"><span className="px-1 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800/40 text-[8px]">Lead</span></div>
+
+          <div className="bg-[#0e0e0e] p-1.5 text-dim">#9082</div>
+          <div className="bg-[#0e0e0e] p-1.5 text-white/60 truncate">Sarah K.</div>
+          <div className="bg-[#0e0e0e] p-1.5 text-emerald-400">$3,200</div>
+          <div className="bg-[#0e0e0e] p-1.5"><span className="px-1 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/40 text-[8px]">Active</span></div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    num: '02',
+    title: 'Centralized Storage',
+    sub: 'Hệ thống lưu trữ File Explorer',
+    delay: '0.15s',
+    illustration: (
+      <div className="w-full bg-[#0a0a0a] rounded border border-border overflow-hidden font-mono text-[9px] mt-4">
+        {/* Window Bar */}
+        <div className="bg-[#111] px-3 py-2 flex items-center justify-between border-b border-border">
+          <span className="text-white/60 flex items-center gap-1.5">📁 Centralized Storage</span>
+          <span className="text-dim text-[8px]">/root/data/sync</span>
+        </div>
+        {/* File Tree */}
+        <div className="p-3 space-y-2 text-subtle">
+          <div className="flex items-center gap-2 text-cyan-400 font-bold">
+            <span>📂</span> <span>database_dumps</span>
+          </div>
+          <div className="pl-4 flex items-center justify-between border-l border-border/40 py-0.5">
+            <span className="text-white/80 truncate">📄 orders_q1_2026.csv</span>
+            <span className="text-dim text-[7px]">14.2 MB</span>
+          </div>
+          <div className="pl-4 flex items-center justify-between border-l border-border/40 py-0.5">
+            <span className="text-white/80 truncate">📄 marketing_leads.json</span>
+            <span className="text-dim text-[7px]">2.1 MB</span>
+          </div>
+          <div className="flex items-center gap-2 text-white/40">
+            <span>📂</span> <span>archives_inactive</span>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    num: '03',
+    title: 'Workspace Management',
+    sub: 'Phân chia không gian làm việc',
+    delay: '0.2s',
+    illustration: (
+      <div className="w-full bg-[#0a0a0a] rounded border border-border overflow-hidden font-mono text-[9px] p-3 space-y-2 mt-4">
+        <div className="flex items-center justify-between p-2 rounded bg-surface border border-cyan-900/30">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded bg-cyan-400 animate-pulse" />
+            <span className="text-white font-bold">AI Workflow Hub</span>
+          </div>
+          <span className="text-[8px] px-1 bg-cyan-950 text-cyan-400 border border-cyan-800/40 rounded">Active</span>
+        </div>
+        <div className="flex items-center justify-between p-2 rounded bg-surface border border-border opacity-50">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded bg-subtle" />
+            <span className="text-subtle">Customer Insights</span>
+          </div>
+          <span className="text-[8px] px-1 bg-border text-dim rounded">Inactive</span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    num: '04',
+    title: 'Data Field Structuring',
+    sub: 'Định nghĩa bảng Schema dữ liệu',
+    delay: '0.25s',
+    illustration: (
+      <div className="w-full bg-[#0a0a0a] rounded border border-border overflow-hidden font-mono text-[9px] mt-4">
+        {/* Window Bar */}
+        <div className="bg-[#111] px-3 py-2 flex items-center justify-between border-b border-border">
+          <span className="text-white/60">⚙️ Schema Builder (Data Table)</span>
+        </div>
+        {/* Schema Table */}
+        <div className="p-3 space-y-1.5">
+          <div className="flex items-center justify-between border-b border-border/40 pb-1 text-dim text-[8px]">
+            <span>Field</span>
+            <span>Type</span>
+            <span>Validation</span>
+          </div>
+          <div className="flex items-center justify-between text-white/80 py-0.5">
+            <span className="text-cyan-400 font-bold">email</span>
+            <span className="text-dim">VARCHAR</span>
+            <span className="text-emerald-500">IS_EMAIL</span>
+          </div>
+          <div className="flex items-center justify-between text-white/80 py-0.5">
+            <span className="text-cyan-400 font-bold">amount</span>
+            <span className="text-dim">DECIMAL</span>
+            <span className="text-yellow-500">GT_ZERO</span>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    num: '05',
+    title: 'Infinite Canvas Interface',
+    sub: 'Không gian xử lý vô hạn',
+    delay: '0.3s',
+    illustration: (
+      <div className="w-full bg-[#0a0a0a] rounded border border-border overflow-hidden font-mono text-[9px] relative h-[100px] grid-bg mt-4">
+        {/* Zoom controls */}
+        <div className="absolute bottom-2 right-2 flex flex-col gap-1 z-10">
+          <span className="w-4 h-4 bg-[#111] text-white flex items-center justify-center border border-border rounded cursor-default select-none hover:bg-cyan-500/20 text-[9px] font-bold">+</span>
+          <span className="w-4 h-4 bg-[#111] text-white flex items-center justify-center border border-border rounded cursor-default select-none hover:bg-cyan-500/20 text-[9px] font-bold">-</span>
+        </div>
+        {/* Floating Node 1 */}
+        <div className="absolute top-2 left-3 p-1 rounded bg-[#0f0f0f] border border-cyan-800/40 text-[7px] text-white">
+          <div className="text-cyan-400 font-bold">FlowCanvas</div>
+          <div className="text-[6px] text-dim">1920x1080</div>
+        </div>
+        {/* Connection Line */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+          <path d="M 60,35 C 100,35 90,65 140,65" fill="none" stroke="rgba(6,182,212,0.5)" strokeWidth="1" strokeDasharray="3" className="animate-pulse" />
+        </svg>
+        {/* Floating Node 2 */}
+        <div className="absolute top-12 right-3 p-1 rounded bg-[#0f0f0f] border border-cyan-800/40 text-[7px] text-white">
+          <div className="text-emerald-400 font-bold">ProcessorNode</div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    num: '06',
+    title: 'Data Pipeline Design',
+    sub: 'Người dùng tự thiết kế pipeline',
+    delay: '0.35s',
+    illustration: (
+      <div className="w-full bg-[#0a0a0a] rounded border border-border overflow-hidden font-mono text-[9px] p-3 space-y-2 mt-4">
+        <div className="flex items-center justify-between text-subtle text-[8px]">
+          <span>Thiết kế luồng dữ liệu</span>
+          <span className="text-emerald-400 font-bold">✓ Valid</span>
+        </div>
+        <div className="flex items-center justify-between gap-1.5">
+          <div className="p-1 rounded bg-[#111] border border-border text-[7px] text-white/80">Input CSV</div>
+          <span className="text-cyan-400 animate-pulse text-[8px]">➔</span>
+          <div className="p-1 rounded bg-[#111] border border-cyan-900 text-[7px] text-cyan-400 font-bold">AI Parser</div>
+          <span className="text-cyan-400 animate-pulse text-[8px]">➔</span>
+          <div className="p-1 rounded bg-[#111] border border-border text-[7px] text-white/80">Webhook</div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    num: '07',
+    title: 'Automated Data Processing',
+    sub: 'Pipeline vận hành tự động hoàn chỉnh',
+    delay: '0.4s',
+    illustration: (
+      <div className="w-full bg-[#0a0a0a] rounded border border-border overflow-hidden font-mono text-[9px] mt-4">
+        {/* Metrics Header */}
+        <div className="p-2 bg-gradient-to-r from-cyan-950/20 to-transparent flex items-center justify-between border-b border-border/40">
+          <span className="text-cyan-400 font-bold flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping inline-block" /> PIPELINE RUNNING
+          </span>
+          <span className="text-emerald-400 animate-pulse">● Online</span>
+        </div>
+        {/* Live Statistics */}
+        <div className="p-3 grid grid-cols-2 gap-2 text-center">
+          <div className="bg-[#111] p-1.5 rounded border border-border/30">
+            <div className="text-[7px] text-dim">PROCESSED</div>
+            <div className="text-white font-bold text-xs">142,850</div>
+          </div>
+          <div className="bg-[#111] p-1.5 rounded border border-border/30">
+            <div className="text-[7px] text-dim">SUCCESS RATE</div>
+            <div className="text-emerald-400 font-bold text-xs">100.0%</div>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+];
+
+function WorkflowSection() {
+  return (
+    <section id="workflow" className="relative py-24 md:py-32 overflow-hidden">
+      <div className="dot-pattern absolute inset-0 opacity-20" />
+      <div className="orb w-80 h-80 top-1/2 left-0 opacity-30" style={{ background: 'rgba(6,182,212,0.06)' }} />
+
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        {/* Header */}
+        <div className="reveal mb-16">
+          <div className="label mb-4">// 02 — Product Workflow</div>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-4">
+            Quy trình tự động hóa <br className="hidden md:block" />
+            <span className="grad-text">xử lý dữ liệu thông minh</span>
+          </h2>
+          <p className="text-subtle text-sm max-w-xl leading-relaxed">
+            Theo dõi hành trình dữ liệu được kết nối từ các bảng tính, đồng bộ hóa tập trung, cấu trúc hóa thông minh, cho đến khi chạy tự động trên không gian vô hạn.
+          </p>
+        </div>
+
+        {/* Steps Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {workflowSteps.map((step) => (
+            <div
+              key={step.num}
+              className="reveal grad-border rounded p-5 flex flex-col justify-between cursor-default"
+              style={{ transitionDelay: step.delay }}
+            >
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/20">
+                    Step {step.num}
+                  </span>
+                  <span className="text-[9px] text-dim font-mono">Workflow Sync</span>
+                </div>
+                <h3 className="font-display font-bold text-white text-base mb-1">{step.title}</h3>
+                <p className="text-subtle text-xs leading-relaxed mb-3">{step.sub}</p>
+              </div>
+              {step.illustration}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Roadmap Section
 // ─────────────────────────────────────────────────────────────────────────────
 const roadmapItems = [
@@ -381,7 +642,7 @@ function RoadmapSection() {
 
       <div className="max-w-6xl mx-auto px-6">
         <div className="reveal mb-16">
-          <div className="label mb-4">// 02 — Roadmap</div>
+          <div className="label mb-4">// 03 — Roadmap</div>
           <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-4">
             Lộ trình <span className="grad-text">phát triển</span>
           </h2>
@@ -467,7 +728,7 @@ function ContactSection() {
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="max-w-2xl mx-auto text-center reveal">
-          <div className="label mb-6 flex justify-center">// 03 — Contact</div>
+          <div className="label mb-6 flex justify-center">// 04 — Contact</div>
           <h2 className="font-display font-bold text-3xl md:text-5xl text-white mb-6">
             Bắt đầu theo dõi và hợp tác
             <br />
@@ -507,6 +768,8 @@ function Footer() {
           <div className="flex items-center gap-6">
             {[
               { label: 'Tính năng',     href: '#focus' },
+              { label: 'Quy trình',    href: '#workflow' },
+              { label: 'Visual Flow',  href: '#visual-workflow' },
               { label: 'Roadmap',      href: '#roadmap' },
             ].map((link) => (
               <a key={link.label} href={link.href} className="label text-dim hover:text-cyan-400 transition-colors">
@@ -544,6 +807,10 @@ export default function HomePage() {
         <HeroSection />
         <Divider />
         <CoreFocusSection />
+        <Divider />
+        <WorkflowSection />
+        <Divider />
+        <VisualWorkflow />
         <Divider />
         <RoadmapSection />
         <Divider />
