@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cluster Landing Page
+
+Đây là **trang landing page** cho dự án **Cluster** — một **AI-Powered Enterprise OS** giúp doanh nghiệp điều hành và tự động hoá quy trình bằng **AI Agent** kết hợp **ERP**.
+
+👉 Live demo: https://cluster-landing-page-xi.vercel.app
+
+## Tính năng nổi bật
+
+- Next.js (App Router) + React
+- UI hiện đại với **Tailwind CSS**: gradients, glassmorphism, hiệu ứng phát sáng
+- Hiệu ứng xuất hiện khi cuộn trang thông qua component **`<ScrollReveal />`** (IntersectionObserver)
+- Contact/Waitlist form gửi dữ liệu tới Google Apps Script
+
+## Cấu trúc trang (src/app/page.tsx)
+
+Trang được chia thành các section:
+
+- **Hero**: Thông điệp chính + CTA trải nghiệm
+- **Core Focus**: Các năng lực cốt lõi (Spreadsheet & Integration, AI Orchestrator, ERP...)
+- **Workflow**: Quy trình hoạt động theo từng step
+- **Visual Workflow**: Biểu diễn luồng dữ liệu/logic
+- **Roadmap**: Lộ trình phát triển đến 2027
+- **Contact**: Form đăng ký nhận thông báo sớm khi MVP ra mắt
 
 ## Getting Started
 
-First, run the development server:
+### Yêu cầu
+
+- Node.js (khuyến nghị bản LTS)
+- npm (hoặc yarn/pnpm/bun)
+
+### Cài đặt & chạy dev server
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# (hoặc yarn dev / pnpm dev / bun dev)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Mở:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Build & chạy production
 
-## Learn More
+```bash
+npm run build
+npm run start
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Dự án phù hợp triển khai lên **Vercel** (Next.js).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Bạn có thể xem/đối chiếu cấu hình deploy thông qua Vercel dashboard
+- Live site hiện tại: https://cluster-landing-page-xi.vercel.app
 
-## Deploy on Vercel
+## Liên hệ
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Nếu cần thay đổi nội dung README hoặc cập nhật thông tin theo tiến độ dự án, có thể chỉnh trực tiếp file này.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

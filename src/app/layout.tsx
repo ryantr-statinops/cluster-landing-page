@@ -37,7 +37,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="vi" className={`${beVietnamPro.variable} ${spaceMono.variable}`}>
+    <html
+      lang="vi"
+      className={`${beVietnamPro.variable} ${spaceMono.variable}`}
+      suppressHydrationWarning
+    >
       <body
         style={{
           fontFamily: 'var(--font-syne), sans-serif',
